@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OUR EID TRIP 2026</title>
+  <style>
+    :root{
+      --bg1:#12071b;
+      --bg2:#2b0d2f;
+      --bg3:#5b163c;
+      --gold:#ffd67a;
+      --gold2:#ffefb0;
+      --rose:#ff7aa8;
+      --rose2:#ffb3cf;
+      --text:#fff8fc;
+      --muted:#f6dce8;
+      --card:rgba(255,255,255,.08);
+      --cardBorder:rgba(255,255,255,.18);
+      --success:#dfffe7;
+      --danger:#ffc0d3;
+      --dark:#1a0b1c;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{
+      width:100%;
+      min-height:100%;
+      font-family:Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,122,168,.16), transparent 18%),
+        radial-gradient(circle at 80% 30%, rgba(255,214,122,.10), transparent 16%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,.04), transparent 18%),
+        linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:24px;
+    }
+
+    .stars{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+
+    .star{
+      position:absolute;
+      width:3px;
+      height:3px;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 0 8px rgba(255,255,255,.9);
+      animation:twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle{
+      0%,100%{opacity:.25;transform:scale(.85)}
+      50%{opacity:1;transform:scale(1.45)}
+    }
+
+    .app{
+      width:min(980px,100%);
+      position:relative;
+      z-index:2;
+    }
+
+    .scene{
+      display:none;
+      min-height:82vh;
+      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      border:1px solid var(--cardBorder);
+      border-radius:32px;
+      padding:34px 26px;
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      box-shadow:
+        0 10px 40px rgba(0,0,0,.35),
+        0 0 30px rgba(255,122,168,.16),
+        inset 0 1px 0 rgba(255,255,255,.15);
+      position:relative;
+      overflow:hidden;
+      animation:fadeIn .65s ease;
+    }
+
+    .scene.active{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(18px) scale(.985)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+
+    .corner-glow{
+      position:absolute;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      pointer-events:none;
+      filter:blur(10px);
+      background:radial-gradient(circle, rgba(255,214,122,.16), transparent 70%);
+    }
+
+    .corner-glow.one{top:-90px;left:-90px}
+    .corner-glow.two{
+      bottom:-100px;right:-90px;
+      background:radial-gradient(circle, rgba(255,122,168,.16), transparent 70%);
+    }
+
+    .progress{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .dot{
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      background:rgba(255,255,255,.2);
+    }
+
+    .dot.active{
+      background:linear-gradient(135deg,var(--gold),var(--rose));
+      box-shadow:0 0 10px rgba(255,214,122,.35);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 16px;
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:999px;
+      color:var(--gold);
+      font-weight:700;
+      letter-spacing:.6px;
+      text-align:center;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(2rem,5vw,4rem);
+      line-height:1.06;
+      text-align:center;
+      margin-bottom:18px;
+    }
+
+    h2{
+      font-size:clamp(1.6rem,4vw,3rem);
+      line-height:1.15;
+      text-align:center;
+      margin-bottom:18px;
+    }
+
+    h3{
+      font-size:1.12rem;
+      text-align:center;
+      margin-bottom:10px;
+    }
+
+    .gold{
+      background:linear-gradient(90deg,#fff2c8,var(--gold),#fff5d7);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .rose{
+      background:linear-gradient(90deg,#ffe0ea,var(--rose),#fff0f6);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .lead{
+      width:min(790px,100%);
+      text-align:center;
+      color:var(--muted);
+      font-size:clamp(1rem,2.3vw,1.16rem);
+      line-height:1.9;
+      margin:0 auto 26px;
+    }
+
+    .lead strong{color:#fff}
+
+    .type-line{
+      display:block;
+      opacity:0;
+      transform:translateY(10px);
+      animation:typeLine .65s forwards;
+    }
+
+    .type-line:nth-child(1){animation-delay:.15s}
+    .type-line:nth-child(2){animation-delay:.45s}
+    .type-line:nth-child(3){animation-delay:.75s}
+    .type-line:nth-child(4){animation-delay:1.05s}
+    .type-line:nth-child(5){animation-delay:1.35s}
+    .type-line:nth-child(6){animation-delay:1.65s}
+    .type-line:nth-child(7){animation-delay:1.95s}
+
+    @keyframes typeLine{
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .btn{
+      border:none;
+      outline:none;
+      cursor:pointer;
+      padding:15px 28px;
+      border-radius:999px;
+      font-size:1rem;
+      font-weight:800;
+      transition:.25s ease;
+    }
+
+    .btn-primary{
+      color:#2d0b1b;
+      background:linear-gradient(135deg,#fff3bf,var(--gold),var(--gold2));
+      box-shadow:0 12px 28px rgba(255,214,122,.22);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px) scale(1.02);
+    }
+
+    .btn-secondary{
+      color:#fff;
+      background:rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    .btn-secondary:hover{transform:translateY(-2px)}
+
+    .panel{
+      width:min(800px,100%);
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:24px;
+      padding:22px;
+      margin-top:10px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .panel p{
+      color:var(--muted);
+      text-align:center;
+      line-height:1.9;
+      font-size:1.04rem;
+    }
+
+    textarea,
+    input[type="password"]{
+      width:min(700px,100%);
+      border:none;
+      outline:none;
+      border-radius:20px;
+      padding:18px 20px;
+      margin-top:18px;
+      font-size:1rem;
+      color:#3b1230;
+      background:linear-gradient(180deg,#fffafd,#ffeef6);
+      box-shadow:inset 0 2px 6px rgba(0,0,0,.06), 0 8px 20px rgba(0,0,0,.12);
+    }
+
+    textarea{
+      min-height:150px;
+      resize:vertical;
+      line-height:1.7;
+    }
+
+    .hint{
+      margin-top:14px;
+      color:#ffd6e5;
+      font-size:.97rem;
+      text-align:center;
+      line-height:1.7;
+    }
+
+    .saved-box{
+      width:min(700px,100%);
+      margin-top:18px;
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.15);
+      color:#fff;
+      line-height:1.8;
+      text-align:left;
+    }
+
+    .saved-title{
+      color:var(--gold);
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .status{
+      min-height:28px;
+      margin-top:12px;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .status.error{color:var(--danger)}
+    .status.success{color:var(--success)}
+
+    .success-big{
+      font-size:clamp(2rem,5vw,4rem);
+      margin-bottom:14px;
+      text-align:center;
+    }
+
+    .success-sub{
+      width:min(760px,100%);
+      text-align:center;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:1.08rem;
+    }
+
+    .gift-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+      margin-top:10px;
+    }
+
+    .gift-text{
+      color:var(--muted);
+      font-size:1.05rem;
+      text-align:center;
+      line-height:1.8;
+      max-width:700px;
+    }
+
+    .gift-box{
+      position:relative;
+      width:220px;
+      height:220px;
+      margin:12px auto 8px;
+      cursor:pointer;
+      animation:giftFloat 2.8s ease-in-out infinite;
+    }
+
+    @keyframes giftFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-12px)}
+    }
+
+    .box-base{
+      position:absolute;
+      bottom:0;
+      width:220px;
+      height:140px;
+      background:linear-gradient(135deg,#ff8db4,#ff4f89);
+      border-radius:18px;
+      box-shadow:0 16px 26px rgba(0,0,0,.28), 0 0 30px rgba(255,122,168,.25);
+    }
+
+    .box-lid{
+      position:absolute;
+      top:36px;
+      width:220px;
+      height:62px;
+      background:linear-gradient(135deg,#ffb0ca,#ff6d9f);
+      border-radius:16px;
+      transform-origin:left bottom;
+      transition:transform .9s cubic-bezier(.2,.8,.2,1), top .9s;
+      box-shadow:0 12px 18px rgba(0,0,0,.18);
+    }
+
+    .ribbon-v,.ribbon-h{
+      position:absolute;
+      background:linear-gradient(180deg,#fff2b9,#ffd56c);
+      box-shadow:0 0 15px rgba(255,214,122,.25);
+    }
+
+    .ribbon-v{
+      width:28px;
+      height:100%;
+      left:96px;
+      top:0;
+      border-radius:10px;
+    }
+
+    .ribbon-h{
+      width:100%;
+      height:26px;
+      left:0;
+      top:55px;
+      border-radius:10px;
+    }
+
+    .bow{
+      position:absolute;
+      top:10px;
+      left:77px;
+      width:66px;
+      height:34px;
+      z-index:3;
+    }
+
+    .bow:before,.bow:after{
+      content:"";
+      position:absolute;
+      width:34px;
+      height:34px;
+      border:8px solid #ffd97f;
+      border-radius:50% 50% 50% 10px;
+      transform:rotate(25deg);
+    }
+
+    .bow:before{left:0}
+    .bow:after{right:0;transform:scaleX(-1) rotate(25deg)}
+
+    .gift-box.opened .box-lid{
+      transform:rotate(-38deg) translate(-18px,-26px);
+      top:14px;
+    }
+
+    .magic-burst{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+      opacity:0;
+      transition:.5s;
+      font-size:2rem;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .gift-box.opened .magic-burst{opacity:1}
+
+    .blink-overlay{
+      position:fixed;
+      inset:0;
+      background:#000;
+      opacity:0;
+      pointer-events:none;
+      z-index:999;
+      transition:opacity .18s ease;
+    }
+
+    .wakeup-lines{
+      width:min(760px,100%);
+      text-align:center;
+      color:var(--muted);
+      font-size:1.15rem;
+      line-height:2;
+      min-height:230px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:10px;
+      padding:10px 0;
+    }
+
+    .wake-line{
+      opacity:0;
+      transform:translateY(14px);
+      transition:.55s ease;
+    }
+
+    .wake-line.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .choice-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(240px,1fr));
+      gap:18px;
+      width:min(760px,100%);
+      margin-top:24px;
+    }
+
+    .choice-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:24px;
+      padding:24px 20px;
+      text-align:center;
+      box-shadow:0 12px 25px rgba(0,0,0,.18);
+    }
+
+    .choice-card p{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .prayer-figure{
+      width:220px;
+      height:220px;
+      margin:6px auto 14px;
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,214,122,.16), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.12);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .rug{
+      position:absolute;
+      bottom:18px;
+      left:50%;
+      transform:translateX(-50%);
+      width:150px;
+      height:90px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#7b1f42,#431128);
+      box-shadow:0 0 18px rgba(255,122,168,.15);
+    }
+
+    .person{
+      position:absolute;
+      left:50%;
+      bottom:74px;
+      transform:translateX(-50%);
+      width:88px;
+      height:90px;
+      border-radius:50px 50px 24px 24px;
+      background:linear-gradient(180deg,#ffd7e6,#ff9fbd);
+    }
+
+    .head{
+      position:absolute;
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      background:#ffd9c9;
+      left:50%;
+      top:44px;
+      transform:translateX(-50%);
+    }
+
+    .amin-text{
+      margin-top:18px;
+      font-size:2.2rem;
+      color:var(--gold);
+      font-weight:900;
+      opacity:0;
+      transform:translateY(10px);
+      transition:.35s ease;
+    }
+
+    .amin-text.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .sleep-screen{
+      position:fixed;
+      inset:0;
+      background:#000;
+      color:#fff;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      z-index:1000;
+      text-align:center;
+      padding:20px;
+    }
+
+    .sleep-screen.active{display:flex}
+
+    .sleep-title{
+      font-size:1.15rem;
+      color:#f4dfe8;
+      margin-bottom:18px;
+      line-height:1.8;
+    }
+
+    .sleep-count{
+      font-size:clamp(3rem,10vw,6rem);
+      font-weight:900;
+      color:var(--gold);
+    }
+
+    .interactive-scene{
+      display:none;
+      width:100%;
+      max-width:920px;
+      animation:fadeIn .45s ease;
+    }
+
+    .interactive-scene.active{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .mission-intro{
+      width:min(840px,100%);
+    }
+
+    .mission-grid{
+      width:min(920px,100%);
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:22px;
+    }
+
+    .mission-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.06));
+      border:1px solid rgba(255,255,255,.17);
+      border-radius:24px;
+      padding:22px 18px;
+      box-shadow:0 12px 25px rgba(0,0,0,.18);
+      min-height:300px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .mission-card.hot{
+      box-shadow:0 10px 30px rgba(255,122,168,.22), 0 0 20px rgba(255,122,168,.12);
+      border-color:rgba(255,122,168,.32);
+    }
+
+    .mission-top{text-align:center}
+    .mission-icon{font-size:2.1rem;margin-bottom:12px;display:block}
+    .mission-title{
+      font-size:1.12rem;
+      font-weight:800;
+      margin-bottom:12px;
+      color:#fff;
+      line-height:1.4;
+    }
+    .mission-text{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:.96rem;
+      text-align:center;
+    }
+
+    .mission-btn{
+      margin-top:18px;
+      width:100%;
+      padding:14px 18px;
+      border:none;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.25s ease;
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.15);
+    }
+
+    .mission-btn.completed{
+      background:linear-gradient(135deg,#fff0be,var(--gold),#ffebb0);
+      color:#2b0d1f;
+      cursor:default;
+    }
+
+    .mission-badge{
+      margin-top:10px;
+      font-size:.9rem;
+      font-weight:700;
+      color:#ffd6e5;
+      text-align:center;
+      min-height:22px;
+    }
+
+    .continue-block{
+      margin-top:26px;
+      text-align:center;
+      opacity:0;
+      transform:translateY(15px);
+      pointer-events:none;
+      transition:.45s ease;
+    }
+
+    .continue-block.show{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+
+    .continue-block p{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:14px;
+      font-size:1.04rem;
+    }
+
+    .kiss-area{
+      width:min(820px,100%);
+      min-height:420px;
+      position:relative;
+      border-radius:28px;
+      margin-top:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.15);
+      overflow:hidden;
+    }
+
+    .kiss-instruction{
+      text-align:center;
+      color:var(--muted);
+      line-height:1.8;
+      margin-top:6px;
+    }
+
+    .kiss-heart{
+      width:110px;
+      height:110px;
+      position:absolute;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:58px;
+      user-select:none;
+      touch-action:none;
+      cursor:grab;
+    }
+
+    .kiss-heart.fixed{
+      right:90px;
+      top:150px;
+      cursor:default;
+    }
+
+    .kiss-heart.draggable{
+      left:90px;
+      top:150px;
+      z-index:5;
+    }
+
+    .kiss-message{
+      margin-top:18px;
+      min-height:28px;
+      color:#ffe5ef;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .kiss-burst{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:0;
+      transition:.4s ease;
+    }
+
+    .kiss-burst.show{opacity:1}
+
+    .mini-heart{
+      position:absolute;
+      font-size:24px;
+      animation:burstUp 1.1s ease forwards;
+      opacity:0;
+    }
+
+    @keyframes burstUp{
+      0%{opacity:0;transform:translateY(0) scale(.8)}
+      20%{opacity:1}
+      100%{opacity:0;transform:translateY(-90px) translateX(var(--x,0px)) scale(1.2)}
+    }
+
+    .private-panel{
+      width:min(720px,100%);
+      text-align:center;
+      background:linear-gradient(180deg, rgba(255,122,168,.12), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:26px;
+      padding:30px 22px;
+      box-shadow:0 16px 35px rgba(0,0,0,.22);
+    }
+
+    .private-panel p{
+      color:var(--muted);
+      line-height:1.9;
+      font-size:1.05rem;
+    }
+
+    .private-message{
+      margin-top:18px;
+      min-height:64px;
+      color:#ffe5ef;
+      font-weight:700;
+      text-align:center;
+      line-height:1.8;
+      max-width:700px;
+    }
+
+    .breakfast-items{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:18px;
+      margin-top:24px;
+    }
+
+    .food-item{
+      width:150px;
+      min-height:150px;
+      border-radius:26px;
+      background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.15);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.25s ease;
+      padding:18px;
+      text-align:center;
+    }
+
+    .food-item.selected{
+      background:linear-gradient(135deg, rgba(255,240,190,.28), rgba(255,214,122,.18));
+      border-color:rgba(255,214,122,.45);
+      transform:translateY(-4px) scale(1.03);
+    }
+
+    .food-emoji{font-size:52px;margin-bottom:10px}
+    .food-name{font-weight:800;color:#fff}
+
+    .breakfast-plate{
+      margin-top:24px;
+      padding:18px 26px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff6e6;
+      font-weight:800;
+      opacity:0;
+      transform:translateY(18px);
+      transition:.35s ease;
+    }
+
+    .breakfast-plate.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:930px){
+      .mission-grid{grid-template-columns:1fr}
+      .choice-grid{grid-template-columns:1fr}
+      .kiss-heart.fixed{right:55px}
+      .kiss-heart.draggable{left:55px}
+    }
+
+    @media (max-width:640px){
+      .scene{
+        min-height:88vh;
+        border-radius:24px;
+        padding:24px 18px;
+      }
+
+      .kiss-area{min-height:360px}
+      .kiss-heart{
+        width:92px;
+        height:92px;
+        font-size:48px;
+      }
+      .kiss-heart.fixed{right:25px;top:135px}
+      .kiss-heart.draggable{left:25px;top:135px}
+      .food-item{width:120px;min-height:130px}
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="blink-overlay" id="blinkOverlay"></div>
+
+  <div class="sleep-screen" id="sleepScreen">
+    <div class="sleep-title">Now we go back to sleep for a little while... 🤍<br>This is the timer until we wake up.</div>
+    <div class="sleep-count" id="sleepCount">10</div>
+  </div>
+
+  <div class="app">
+
+    <!-- SCENE 1 -->
+    <section class="scene active" id="scene1">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="progress">
+        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+
+      <div class="badge">🌙 OUR EID TRIP 2026 ✨</div>
+
+      <h1>
+        <span class="gold">Welcome, Robina</span><br>
+        <span class="rose">to our Eid day together</span>
+      </h1>
+
+      <div class="lead">
+        <span class="type-line">💝 <strong>This is your very first gift of today</strong>... and no, my beautiful girl, this one is not like the others.</span>
+        <span class="type-line">👀 This little surprise is going to ask <strong>something from you too</strong>...</span>
+        <span class="type-line">✨ A little effort, a little curiosity, and maybe a little blush on that pretty face.</span>
+        <span class="type-line">😏 But don’t worry... it is meant to be <strong>fun, sweet, exciting</strong>... and just a tiny bit dangerous for your heart.</span>
+        <span class="type-line">🔥 So take your time, enjoy every second, and let the suspense grow.</span>
+        <span class="type-line">💫 Tonight is not just about gifts.</span>
+        <span class="type-line">❤️ Tonight is about <strong>you</strong>.</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goToScene(2)">Continue, Princess ➜</button>
+      </div>
+    </section>
+
+    <!-- SCENE 2 -->
+    <section class="scene" id="scene2">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="progress">
+        <div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+
+      <div class="badge">🎁 A gift has appeared</div>
+      <h2><span class="gold">Tap the gift box</span></h2>
+
+      <div class="gift-wrap">
+        <p class="gift-text">
+          A special little present has quietly landed here for you, Robina... ✨<br>
+          Press the gift box and open it like the curious princess you are. 👑
+        </p>
+
+        <div class="gift-box" id="giftBox" onclick="openGiftMagic()">
+          <div class="box-lid">
+            <div class="ribbon-v"></div>
+            <div class="bow"></div>
+          </div>
+          <div class="box-base">
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+          </div>
+          <div class="magic-burst">
+            <span>✨</span><span>💖</span><span>🎀</span><span>🌙</span><span>🔥</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCENE 3 -->
+    <section class="scene" id="scene3">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="progress">
+        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+
+      <div class="badge">😏 Not so fast, princess</div>
+      <h2><span class="rose">Whoooops... easy there, my princess 👑</span></h2>
+
+      <div class="panel">
+        <p>
+          I have prepared so many gifts for you for later... 🎁✨<br><br>
+          And I get nothing? Mmm... no, my pretty girl, not today. 😌🔥<br><br>
+          I want something too.<br>
+          And yes... your pictures are very, very special... honestly one of the sweetest things a guy like me could ever receive. 📸❤️<br><br>
+          But today there are rules if you want to unlock your gift... 😏<br><br>
+          So below, write something that you want to give me.<br>
+          Be creative. Be cute. Be dangerous. 💌<br><br>
+          ⚠️ Not allowed today: your pictures, your beauty, or your enchanting fingernails. 💅🚫
+        </p>
+      </div>
+
+      <textarea id="giftText" placeholder="Write your answer here for Safeer..."></textarea>
+      <div class="hint">You must write something before you can continue. 💖</div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveAnswer()">Send & Continue ➜</button>
+      </div>
+      <div class="status" id="scene3Status"></div>
+    </section>
+
+    <!-- SCENE 4 -->
+    <section class="scene" id="scene4">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="progress">
+        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+
+      <div class="badge">📸 One more thing</div>
+      <h2><span class="gold">Now keep this exactly as it is</span></h2>
+
+      <div class="saved-box">
+        <div class="saved-title">Your message:</div>
+        <div id="savedAnswerPreview"></div>
+      </div>
+
+      <div class="panel">
+        <p>
+          Now make a screenshot of this and send it to Safeer on Snapchat 📲✨<br><br>
+          Only then will you get the password to continue this little Eid adventure... 🔐❤️
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goToScene(5)">I sent it, continue ➜</button>
+      </div>
+    </section>
+
+    <!-- SCENE 5 -->
+    <section class="scene" id="scene5">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="progress">
+        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+
+      <div class="badge">🔐 Password Gate</div>
+      <h2><span class="rose">Enter the password</span></h2>
+
+      <div class="panel">
+        <p>
+          Time to unlock the next part of your gift, princess... ✨<br>
+          Enter the password carefully and let’s see if you earned the next step. 😏
+        </p>
+      </div>
+
+      <input type="password" id="passwordInput" placeholder="Enter password here..." />
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="checkPassword()">Unlock ➜</button>
+      </div>
+
+      <div class="status" id="passwordStatus"></div>
+    </section>
+
+    <!-- SCENE 6 -->
+    <section class="scene" id="scene6">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="progress">
+        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+        <div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+
+      <div class="badge">🎉 Access granted</div>
+      <div class="success-big">Yaaay... you did it, Robina 💖</div>
+
+      <div class="success-sub">
+        You passed the first little challenge of our Eid journey. 🌙✨<br><br>
+        And this was only the beginning...<br>
+        because I still have more waiting for you. 😌🎁🔥
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goToScene(7)">Continue ➜</button>
+      </div>
+    </section>
+
+    <!-- SCENE 7 -->
+    <section class="scene" id="scene7">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="progress">
+        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div>
+      </div>
+
+      <div class="badge">🌅 The beginning of the day</div>
+
+      <h1><span class="gold">OUR EID TRIP 2026</span></h1>
+
+      <div class="lead">
+        <span class="type-line">Robina... you passed the first little challenge. ✨</span>
+        <span class="type-line">But that was only the entrance.</span>
+        <span class="type-line">Today is not just Eid...</span>
+        <span class="type-line"><strong>Today is our Eid day together.</strong> ❤️</span>
+        <span class="type-line">A whole day filled with little moments, hidden surprises, soft smiles...</span>
+        <span class="type-line">and a few dangerous ones too. 😏</span>
+        <span class="type-line">And now, my princess... it is finally time to begin. 🌙</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="startDaySequence()">Begin the Day ➜</button>
+      </div>
+    </section>
+
+    <!-- SCENE WAKE -->
+    <section class="scene" id="sceneWake">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="progress">
+        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+        <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+      </div>
+
+      <div class="badge">☀️ Morning light</div>
+      <h2><span class="gold">You slowly open your eyes...</span></h2>
+
+      <div class="wakeup-lines" id="wakeLines">
+        <div class="wake-line">The morning light falls softly across the room. ☀️</div>
+        <div class="wake-line">Everything feels calm. Warm. Close.</div>
+        <div class="wake-line">You stretch a little...</div>
+        <div class="wake-line">and then you realize something.</div>
+        <div class="wake-line">Today is Eid. 🌙</div>
+        <div class="wake-line">And Safeer is right here with you. ❤️</div>
+      </div>
+    </section>
+
+    <!-- SCENE 8 / 9: TAHAJJUD WAKE -->
+    <section class="scene" id="scene9">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="badge">🤍 A soft wake-up</div>
+      <h2><span class="rose">Good morning, my beautiful Rabi</span></h2>
+
+      <div class="panel">
+        <p>
+          Good morning, my beautiful Rabi... ☀️🤍<br><br>
+          Today is Eid.<br>
+          Ramadan is over... but that does not mean we leave Tahajjud behind. 🌙<br><br>
+          Come on, my beautiful girl... wake up gently.<br>
+          Let us begin this day with Allah first. 🤲
+        </p>
+      </div>
+
+      <div class="choice-grid">
+        <div class="choice-card">
+          <h3>🌸 I have my period</h3>
+          <p>Choose this if you want to stay resting, my love.</p>
+          <div class="btn-row">
+            <button class="btn btn-secondary" onclick="choosePeriod()">Choose</button>
+          </div>
+        </div>
+
+        <div class="choice-card">
+          <h3>🤍 I’m coming, my love</h3>
+          <p>Choose this if you want to come pray with me.</p>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="goToScene('scene10Prayer')">Choose</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERIOD RESPONSE -->
+    <section class="scene" id="scene9Period">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="badge">🤍 Rest, my love</div>
+      <h2><span class="gold">It’s okay, my Rabi</span></h2>
+
+      <div class="panel">
+        <p>
+          Oh my love... I am sorry I woke you. 🤍<br><br>
+          Do not worry, my beautiful Rabi.<br>
+          I will pray in your name too, and you can keep sleeping peacefully.<br><br>
+          I give you one soft kiss on your forehead... 💋<br>
+          now sleep, my love.
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goToScene('scene11Hands')">Continue ➜</button>
+      </div>
+    </section>
+
+    <!-- PRAYER -->
+    <section class="scene" id="scene10Prayer">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="badge">🕊️ Your prayer</div>
+      <h2><span class="gold">You sit on the prayer mat</span></h2>
+
+      <div class="prayer-figure">
+        <div class="head"></div>
+        <div class="person"></div>
+        <div class="rug"></div>
+      </div>
+
+      <div class="panel">
+        <p>
+          You sit on your prayer mat quietly... 🤍<br><br>
+          Write a prayer below if you want.<br>
+          Safeer will not read it. It will not be saved.<br><br>
+          I am only the one carrying your prayer onward to Allah. 🤲
+        </p>
+      </div>
+
+      <textarea id="prayerText" placeholder="Write your prayer here..."></textarea>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="submitPrayer()">Send Prayer ➜</button>
+      </div>
+
+      <div class="amin-text" id="aminText">Ameen 🤍</div>
+    </section>
+
+    <!-- HANDS + KISS QUESTION -->
+    <section class="scene" id="scene11Hands">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="badge">🤲 Alhamdulillah</div>
+      <h2><span class="rose">Tahajjud and Fajr are done</span></h2>
+
+      <div class="panel">
+        <p>
+          Now Tahajjud and Fajr have been prayed... Alhamdulillah. 🤍<br><br>
+          I hold your hands gently.<br>
+          Then I look at you and ask softly...<br><br>
+          <strong>May I give you a kiss, my love?</strong>
+        </p>
+      </div>
+
+      <div class="choice-grid">
+        <div class="choice-card">
+          <h3>💋 Yes, my love</h3>
+          <p>Let me kiss you softly and take you into my arms.</p>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="chooseYesKiss()">Choose</button>
+          </div>
+        </div>
+
+        <div class="choice-card">
+          <h3>🤍 No, my love</h3>
+          <p>That is okay too. I will still take your hand gently.</p>
+          <div class="btn-row">
+            <button class="btn btn-secondary" onclick="chooseNoKiss()">Choose</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YES KISS -->
+    <section class="scene" id="scene11Yes">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="badge">💋 A soft moment</div>
+      <h2><span class="gold">Come here, my love</span></h2>
+
+      <div class="panel">
+        <p>
+          I give you a soft kiss... 💋<br><br>
+          then I take you into my arms gently,<br>
+          and we go back to sleep together for a little while. 🤍
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="startSleepTimer()">Go back to sleep ➜</button>
+      </div>
+    </section>
+
+    <!-- NO KISS -->
+    <section class="scene" id="scene11No">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="badge">🤍 Still close</div>
+      <h2><span class="gold">That’s okay, my love</span></h2>
+
+      <div class="panel">
+        <p>
+          Oh okay... if you do not feel like it, that is okay. 🤍<br><br>
+          I take your hand gently,<br>
+          and we go back to sleep together for a little while.
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="startSleepTimer()">Go back to sleep ➜</button>
+      </div>
+    </section>
+
+    <!-- MORNING MISSIONS -->
+    <section class="scene" id="scene8">
+      <div class="corner-glow one"></div>
+      <div class="corner-glow two"></div>
+
+      <div class="interactive-scene active" id="missionOverview">
+        <div class="badge">👑 Morning missions</div>
+        <h2><span class="rose">Morning Missions for Robina</span></h2>
+
+        <div class="panel mission-intro">
+          <p>
+            Before our Eid adventure continues...<br>
+            you must complete three very important morning missions. ✨<br><br>
+            They may look innocent...<br>
+            but they are not as easy as they seem. 😏<br><br>
+            Complete them all...<br>
+            and Safeer will unlock the next surprise. ❤️
+          </p>
+        </div>
+
+        <div class="mission-grid">
+          <div class="mission-card">
+            <div class="mission-top">
+              <span class="mission-icon">💋</span>
+              <div class="mission-title">Mission One — The Eid Kiss</div>
+              <div class="mission-text">
+                Safeer is waiting for his Eid kiss.<br><br>
+                Bring the two hearts together and give him the sweet start to the day he has been waiting for. 😌
+              </div>
+            </div>
+            <div>
+              <button class="mission-btn" id="missionOverviewBtn1" onclick="openMiniMission('kissMission')">Start Mission</button>
+              <div class="mission-badge" id="missionBadge1"></div>
+            </div>
+          </div>
+
+          <div class="mission-card hot">
+            <div class="mission-top">
+              <span class="mission-icon">🔥</span>
+              <div class="mission-title">Mission Two — Private Moment</div>
+              <div class="mission-text">
+                Put the phones away. Forget the world outside the room.<br><br>
+                Let this moment feel private, close, and only for the two of you. 😏
+              </div>
+            </div>
+            <div>
+              <button class="mission-btn" id="missionOverviewBtn2" onclick="openMiniMission('privateMission')">Start Mission</button>
+              <div class="mission-badge" id="missionBadge2"></div>
+            </div>
+          </div>
+
+          <div class="mission-card">
+            <div class="mission-top">
+              <span class="mission-icon">🥞</span>
+              <div class="mission-title">Mission Three — Breakfast Together</div>
+              <div class="mission-text">
+                Prepare a cute little Eid breakfast for both of you.<br><br>
+                Choose everything you need and make it worthy of a king and queen. 👑
+              </div>
+            </div>
+            <div>
+              <button class="mission-btn" id="missionOverviewBtn3" onclick="openMiniMission('breakfastMission')">Start Mission</button>
+              <div class="mission-badge" id="missionBadge3"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="continue-block" id="continueBlock">
+          <p>
+            Perfect Robina...<br>
+            you completed the first part of our Eid day. 💖<br>
+            Now the real surprises begin.
+          </p>
+          <button class="btn btn-primary">Continue Our Eid Adventure ➜</button>
+        </div>
+      </div>
+
+      <!-- KISS MINI SCENE -->
+      <div class="interactive-scene" id="kissMission">
+        <div class="badge">💋 Mission One</div>
+        <h2><span class="rose">The Eid Kiss</span></h2>
+
+        <p class="kiss-instruction">
+          Safeer is waiting for his Eid kiss... 💋<br>
+          Bring the hearts together.
+        </p>
+
+        <div class="kiss-area" id="kissArea">
+          <div class="kiss-heart draggable" id="dragHeart">💖</div>
+          <div class="kiss-heart fixed" id="fixedHeart">❤️</div>
+          <div class="kiss-burst" id="kissBurst"></div>
+        </div>
+
+        <div class="kiss-message" id="kissMessage">Drag the left heart to Safeer’s heart 😏</div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="backToOverview()">Back</button>
+        </div>
+      </div>
+
+      <!-- PRIVATE MINI SCENE -->
+      <div class="interactive-scene" id="privateMission">
+        <div class="badge">🔥 Mission Two</div>
+        <h2><span class="gold">Private Moment</span></h2>
+
+        <div class="private-panel">
+          <p>
+            This mission is different...<br><br>
+            Put the phone a little closer.<br>
+            Imagine Safeer right there with you.<br><br>
+            This moment is only for the two of you. 🤍
+          </p>
+        </div>
+
+        <div class="private-message" id="privateMessage">
+          Press start and let the teasing begin... 😏
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="privateStartBtn" onclick="startPrivateMission()">Start Mission</button>
+          <button class="btn btn-secondary" onclick="backToOverview()">Back</button>
+        </div>
+      </div>
+
+      <!-- BREAKFAST MINI SCENE -->
+      <div class="interactive-scene" id="breakfastMission">
+        <div class="badge">🥞 Mission Three</div>
+        <h2><span class="gold">Eid Breakfast Together</span></h2>
+
+        <div class="panel" style="max-width:760px;">
+          <p>
+            Prepare the Eid breakfast for both of you.<br><br>
+            Select all three items to make it complete. ☀️
+          </p>
+        </div>
+
+        <div class="breakfast-items">
+          <div class="food-item" id="foodPancake" onclick="toggleFood('pancake')">
+            <div class="food-emoji">🥞</div>
+            <div class="food-name">Pancakes</div>
+          </div>
+
+          <div class="food-item" id="foodCoffee" onclick="toggleFood('coffee')">
+            <div class="food-emoji">☕</div>
+            <div class="food-name">Coffee</div>
+          </div>
+
+          <div class="food-item" id="foodStrawberry" onclick="toggleFood('strawberry')">
+            <div class="food-emoji">🍓</div>
+            <div class="food-name">Strawberries</div>
+          </div>
+        </div>
+
+        <div class="breakfast-plate" id="breakfastPlate">
+          Breakfast ready for the king and queen 👑
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="backToOverview()">Back</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const correctPassword = "Robina_Safeer786";
+    const missionsDone = {1:false,2:false,3:false};
+    const breakfastSelected = {pancake:false, coffee:false, strawberry:false};
+
+    let kissDone = false;
+    let privateDone = false;
+    let sleepInterval = null;
+
+    function goToScene(idOrNumber){
+      document.querySelectorAll(".scene").forEach(scene => scene.classList.remove("active"));
+      const targetId = typeof idOrNumber === "number" ? "scene" + idOrNumber : idOrNumber;
+      const target = document.getElementById(targetId);
+      if(target){
+        target.classList.add("active");
+        window.scrollTo({top:0,behavior:"smooth"});
+      }
+    }
+
+    function openGiftMagic(){
+      const box = document.getElementById("giftBox");
+      if(box.classList.contains("opened")) return;
+      box.classList.add("opened");
+      setTimeout(() => goToScene(3), 1400);
+    }
+
+    function saveAnswer(){
+      const textArea = document.getElementById("giftText");
+      const value = textArea.value.trim();
+      const status = document.getElementById("scene3Status");
+
+      if(!value){
+        status.textContent = "Please write something first, princess. 😏";
+        status.className = "status error";
+        return;
+      }
+
+      document.getElementById("savedAnswerPreview").textContent = value;
+      status.textContent = "Saved successfully. 💖";
+      status.className = "status success";
+
+      setTimeout(() => goToScene(4), 500);
+    }
+
+    function checkPassword(){
+      const value = document.getElementById("passwordInput").value;
+      const status = document.getElementById("passwordStatus");
+
+      if(value === correctPassword){
+        status.textContent = "Correct password... unlocking now. ✨";
+        status.className = "status success";
+        setTimeout(() => goToScene(6), 650);
+      } else {
+        status.textContent = "Wrong password, pretty girl... try again. 💔";
+        status.className = "status error";
+      }
+    }
+
+    function startDaySequence(){
+      goToScene("sceneWake");
+      runBlinkAnimation();
+      revealWakeupLines();
+    }
+
+    function runBlinkAnimation(){
+      const overlay = document.getElementById("blinkOverlay");
+      const pattern = [120,170,120,170,120,170];
+      let total = 0;
+
+      pattern.forEach((duration,index) => {
+        setTimeout(() => {
+          overlay.style.opacity = index % 2 === 0 ? "1" : "0";
+        }, total);
+        total += duration;
+      });
+
+      setTimeout(() => {
+        overlay.style.opacity = "0";
+      }, total + 60);
+    }
+
+    function revealWakeupLines(){
+      const lines = document.querySelectorAll("#wakeLines .wake-line");
+      lines.forEach(line => line.classList.remove("show"));
+
+      lines.forEach((line,index) => {
+        setTimeout(() => line.classList.add("show"), 800 + (index * 800));
+      });
+
+      setTimeout(() => {
+        goToScene("scene9");
+      }, 800 + (lines.length * 800) + 900);
+    }
+
+    function choosePeriod(){
+      goToScene("scene9Period");
+    }
+
+    function submitPrayer(){
+      const amin = document.getElementById("aminText");
+      const prayerText = document.getElementById("prayerText");
+      amin.classList.add("show");
+      prayerText.value = "";
+      setTimeout(() => goToScene("scene11Hands"), 1200);
+    }
+
+    function chooseYesKiss(){
+      goToScene("scene11Yes");
+    }
+
+    function chooseNoKiss(){
+      goToScene("scene11No");
+    }
+
+    function startSleepTimer(){
+      const screen = document.getElementById("sleepScreen");
+      const count = document.getElementById("sleepCount");
+      let n = 10;
+
+      if(sleepInterval) clearInterval(sleepInterval);
+
+      screen.classList.add("active");
+      count.textContent = n;
+
+      sleepInterval = setInterval(() => {
+        n--;
+        count.textContent = n;
+        if(n <= 0){
+          clearInterval(sleepInterval);
+          screen.classList.remove("active");
+          goToScene("scene8");
+        }
+      }, 1000);
+    }
+
+    function openMiniMission(id){
+      document.querySelectorAll("#scene8 .interactive-scene").forEach(el => el.classList.remove("active"));
+      const target = document.getElementById(id);
+      if(target) target.classList.add("active");
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    function backToOverview(){
+      document.querySelectorAll("#scene8 .interactive-scene").forEach(el => el.classList.remove("active"));
+      document.getElementById("missionOverview").classList.add("active");
+    }
+
+    function markMissionComplete(number){
+      missionsDone[number] = true;
+      const btn = document.getElementById("missionOverviewBtn" + number);
+      const badge = document.getElementById("missionBadge" + number);
+
+      if(btn){
+        btn.classList.add("completed");
+        btn.textContent = "Completed ✓";
+        btn.disabled = true;
+      }
+
+      if(badge){
+        badge.textContent = "Mission claimed ✨";
+      }
+
+      if(missionsDone[1] && missionsDone[2] && missionsDone[3]){
+        document.getElementById("continueBlock").classList.add("show");
+      }
+    }
+
+    function setupDragHeart(){
+      const dragHeart = document.getElementById("dragHeart");
+      const fixedHeart = document.getElementById("fixedHeart");
+      const area = document.getElementById("kissArea");
+      const message = document.getElementById("kissMessage");
+
+      let dragging = false;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      function getClientPosition(e){
+        if(e.touches && e.touches[0]){
+          return {x:e.touches[0].clientX, y:e.touches[0].clientY};
+        }
+        return {x:e.clientX, y:e.clientY};
+      }
+
+      function startDrag(e){
+        if(kissDone) return;
+        dragging = true;
+        const pos = getClientPosition(e);
+        const rect = dragHeart.getBoundingClientRect();
+        offsetX = pos.x - rect.left;
+        offsetY = pos.y - rect.top;
+      }
+
+      function doDrag(e){
+        if(!dragging || kissDone) return;
+        e.preventDefault();
+
+        const pos = getClientPosition(e);
+        const areaRect = area.getBoundingClientRect();
+
+        let x = pos.x - areaRect.left - offsetX;
+        let y = pos.y - areaRect.top - offsetY;
+
+        x = Math.max(0, Math.min(x, areaRect.width - dragHeart.offsetWidth));
+        y = Math.max(0, Math.min(y, areaRect.height - dragHeart.offsetHeight));
+
+        dragHeart.style.left = x + "px";
+        dragHeart.style.top = y + "px";
+
+        const dragRect = dragHeart.getBoundingClientRect();
+        const fixedRect = fixedHeart.getBoundingClientRect();
+
+        const dragCenterX = dragRect.left + dragRect.width / 2;
+        const dragCenterY = dragRect.top + dragRect.height / 2;
+        const fixedCenterX = fixedRect.left + fixedRect.width / 2;
+        const fixedCenterY = fixedRect.top + fixedRect.height / 2;
+
+        const distance = Math.hypot(dragCenterX - fixedCenterX, dragCenterY - fixedCenterY);
+
+        if(distance < 65){
+          completeKissMission();
+          dragging = false;
+        }
+      }
+
+      function stopDrag(){
+        dragging = false;
+      }
+
+      dragHeart.addEventListener("mousedown", startDrag);
+      dragHeart.addEventListener("touchstart", startDrag, {passive:true});
+      window.addEventListener("mousemove", doDrag);
+      window.addEventListener("touchmove", doDrag, {passive:false});
+      window.addEventListener("mouseup", stopDrag);
+      window.addEventListener("touchend", stopDrag);
+
+      message.textContent = "Drag the left heart to Safeer’s heart 😏";
+    }
+
+    function completeKissMission(){
+      if(kissDone) return;
+      kissDone = true;
+
+      const burst = document.getElementById("kissBurst");
+      const message = document.getElementById("kissMessage");
+      const dragHeart = document.getElementById("dragHeart");
+
+      dragHeart.style.opacity = "0";
+      burst.innerHTML = "";
+      burst.classList.add("show");
+
+      for(let i=0; i<12; i++){
+        const heart = document.createElement("div");
+        heart.className = "mini-heart";
+        heart.textContent = ["💖","💕","💋"][Math.floor(Math.random() * 3)];
+        heart.style.left = (45 + Math.random() * 20) + "%";
+        heart.style.top = (40 + Math.random() * 18) + "%";
+        heart.style.setProperty("--x", ((Math.random() * 100) - 50) + "px");
+        heart.style.animationDelay = (Math.random() * 0.15) + "s";
+        burst.appendChild(heart);
+      }
+
+      message.textContent = "Kiss delivered... Safeer is smiling now 😌";
+
+      setTimeout(() => {
+        markMissionComplete(1);
+        backToOverview();
+      }, 1400);
+    }
+
+    function startPrivateMission(){
+      if(privateDone) return;
+      privateDone = true;
+
+      const msg = document.getElementById("privateMessage");
+      const btn = document.getElementById("privateStartBtn");
+
+      btn.disabled = true;
+
+      const lines = [
+        "Come a little closer...",
+        "Yes... a little closer.",
+        "Imagine Safeer right there with you.",
+        "Stay there for a moment.",
+        "This one is only for the two of you. 😏",
+        "Someone is definitely enjoying this mission..."
+      ];
+
+      let i = 0;
+      msg.textContent = lines[0];
+
+      const interval = setInterval(() => {
+        i++;
+        if(i < lines.length){
+          msg.textContent = lines[i];
+        } else {
+          clearInterval(interval);
+          markMissionComplete(2);
+          setTimeout(() => backToOverview(), 1200);
+        }
+      }, 1500);
+    }
+
+    function toggleFood(type){
+      if(missionsDone[3]) return;
+
+      breakfastSelected[type] = !breakfastSelected[type];
+
+      const map = {
+        pancake:"foodPancake",
+        coffee:"foodCoffee",
+        strawberry:"foodStrawberry"
+      };
+
+      document.getElementById(map[type]).classList.toggle("selected", breakfastSelected[type]);
+      checkBreakfastMission();
+    }
+
+    function checkBreakfastMission(){
+      if(breakfastSelected.pancake && breakfastSelected.coffee && breakfastSelected.strawberry){
+        document.getElementById("breakfastPlate").classList.add("show");
+        markMissionComplete(3);
+        setTimeout(() => backToOverview(), 1400);
+      }
+    }
+
+    function createStars(){
+      const stars = document.getElementById("stars");
+      for(let i=0; i<70; i++){
+        const s = document.createElement("div");
+        s.className = "star";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = Math.random() * 100 + "vh";
+        s.style.animationDelay = (Math.random() * 4) + "s";
+        s.style.opacity = Math.random();
+        stars.appendChild(s);
+      }
+    }
+
+    createStars();
+    setupDragHeart();
+  </script>
+</body>
+</html>
